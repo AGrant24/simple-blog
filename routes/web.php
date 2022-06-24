@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $articles = Article::take(5)->latest()->get();
-    return view('articles.index', compact('articles'));
+    return view('articles.home', compact('articles'));
 })->name('home');
 
-Route::resource('articles', \App\Http\Controllers\ArticleController::class)->names([
-    'home' => 'articles.index'
-]);
+// Articles
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+
 
 Route::view('/about', 'about')->name('about');
 

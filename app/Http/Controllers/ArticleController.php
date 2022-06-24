@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::get();
+        $articles = Article::latest()->get();
         return view('articles.index', compact('articles'));
     }
 
@@ -47,7 +47,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('articles.show', compact('article'));
     }
 
     /**

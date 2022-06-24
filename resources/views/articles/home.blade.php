@@ -40,7 +40,7 @@
                 @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text--500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
                     @endauth
@@ -95,17 +95,19 @@
 @foreach($articles as $article)
             <article class="flex flex-col shadow my-4">
                 <!-- Article Image -->
+                
                 <a href="#" class="hover:opacity-75">
                     <img src="https://source.unsplash.com/collection/1346951/1000x500?sig=1">
                 </a>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Technology</a>
-                    <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $article->title }}</a>
-                    <p href="#" class="text-sm pb-3">
-                        By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on April 25th, 2020
+                    <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Category</a>
+                    <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Tag</a>
+                    <h2 class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $article->title }}</h2>
+                    <p class="text-sm pb-3">
+                         Published on {{ $article->created_at }}
                     </p>
-                    <a href="#" class="pb-6">{{ $article->content }}</a>
-                    <a href="#" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+                    <a class="pb-6">{{ $article->content }}</a>
+                    <a href="{{ route('articles.show', $article) }}" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
 
